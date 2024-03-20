@@ -1,14 +1,24 @@
 package com.chat.app.first.model;
 
+import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.stereotype.Component;
 
-@Component
+@Document(collection = "chat_store")
 public class Message {
-    private String chat;
+    private String Username;
+    private String Chat;
+    public Message(){}
+    public Message(String chat){
+        this.Chat=chat;
+    }
     public String getChat(){
-        return chat;
+        return Chat;
     }
     public void setChat(String chat){
-        this.chat=chat;
+        this.Chat=chat;
+    }
+    public String getUsername(){return Username;}
+    public void setUsername(String username){
+        this.Username=username;
     }
 }

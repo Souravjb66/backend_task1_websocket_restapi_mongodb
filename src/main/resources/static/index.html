@@ -14,34 +14,41 @@
     <button onclick="sendMessage('user1')">Send</button>
 </div>
 
-<div>
-    <label for="user2">User 2:</label>
-    <input type="text" id="user2Message" placeholder="message">
-    <button onclick="sendMessage('user2')">Send</button>
-</div>
+<!--<div>-->
+<!--    <label for="user2">User 2:</label>-->
+<!--    <input type="text" id="user2Message" placeholder="message">-->
+<!--    <button onclick="sendMessage('user2')">Send</button>-->
+<!--</div>-->
 
 <div>
     <h2>Received Messages:</h2>
+    <h2 id="u1"></h2>
     <ul id="messages"></ul>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.1/sockjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <script>
-    const socket = new SockJS('http://localhost:8080/ws');
+    const socket = new SockJS('http://localhost:8080/ws');    //connect with websocket
     const stompClient = Stomp.over(socket);
 
     stompClient.connect({}, function(frame) {
         console.log('Connected: ' + frame);
-        stompClient.subscribe('/topic/get', function(message) {
+        stompClient.subscribe('/topic/get', function(message) {        //recive chat
             const msg = JSON.parse(message.body);
-            document.getElementById("messages").innerHTML += "<li>" + msg.chat + "</li>";
+
+            document.getElementById("messages").innerHTML += "<li>"+msg.name+"->  "+ msg.chat + "</li>";
+<!--            document.getElementById("u1").innerHTML += "<li>" + msg.name + "</li>";-->
+
+
+
         });
     });
 
     function sendMessage(user) {
         const message = document.getElementById(user + 'Message').value;
-        stompClient.send('/app/message', {}, JSON.stringify({ chat: message }));
+
+        stompClient.send('/app/message', {}, JSON.stringify({ chat: message}));  //send message
         document.getElementById(user + 'Message').value = '';
     }
 </script>
