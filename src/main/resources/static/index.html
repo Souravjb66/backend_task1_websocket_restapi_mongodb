@@ -37,8 +37,8 @@
         stompClient.subscribe('/topic/get', function(message) {        //recive chat
             const msg = JSON.parse(message.body);
 
-            document.getElementById("messages").innerHTML += "<li>"+msg.name+"->  "+ msg.chat + "</li>";
-<!--            document.getElementById("u1").innerHTML += "<li>" + msg.name + "</li>";-->
+            document.getElementById("messages").innerHTML += "<li>"+msg.username+"->  "+ msg.chat + "</li>";
+
 
 
 
