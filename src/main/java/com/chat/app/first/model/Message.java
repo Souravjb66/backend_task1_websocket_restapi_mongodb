@@ -1,7 +1,7 @@
 package com.chat.app.first.model;
 
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.stereotype.Component;
+
 
 @Document(collection = "chat_store")
 public class Message {
