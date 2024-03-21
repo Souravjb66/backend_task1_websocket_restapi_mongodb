@@ -19,12 +19,15 @@ public class LoginService {
             return "saved";
 
         }
+
         return "already available change username";
 
     }
     public Boolean LoginUser(Login login){
         var i=userRepository.findByByUsername(login.getUsername());
+
         for(var b:i){
+
             if(Objects.equals(b.getPassword(), login.getPassword()) && Objects.equals(b.getUsername(), login.getUsername())){
                 return true;
 

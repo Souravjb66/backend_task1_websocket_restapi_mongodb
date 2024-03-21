@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 public class Login {
     private String Username;
     private String Password;
+    public Login(){}
     public Login(String username,String password){
         this.Password=password;
         this.Username=username;

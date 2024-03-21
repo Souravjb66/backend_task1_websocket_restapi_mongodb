@@ -1,6 +1,7 @@
 package com.chat.app.first.model;
 
 import org.bson.codecs.pojo.annotations.BsonId;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 //import org.springframework.data.annotation.Id;
 
@@ -8,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "register_user")
 public class User {
     private String Name;
-//    @BsonId
+    @Id
     private String Username;
     private String Password;
     public User(){}
