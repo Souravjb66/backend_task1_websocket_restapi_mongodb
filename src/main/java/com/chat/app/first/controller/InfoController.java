@@ -13,12 +13,19 @@ import java.util.List;
 
 @RestController
 public class InfoController {
-    @Autowired
+
     private Login userlogin;
-    @Autowired
+
     private ChatService chatService;
-    @Autowired
+
     private LoginService loginService;
+    public InfoController(){}
+    @Autowired
+    public InfoController(Login login,ChatService chat,LoginService service){
+        this.userlogin=login;
+        this.chatService=chat;
+        this.loginService=service;
+    }
     @PostMapping("/register")
     public String registerUser(@RequestBody User user){
         return loginService.SaveUser(user);

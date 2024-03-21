@@ -10,8 +10,13 @@ import java.util.Objects;
 
 @Service
 public class LoginService {
-    @Autowired
     private LoginRepository userRepository;
+    public LoginService(){}
+    @Autowired
+    public LoginService(LoginRepository Userrepo){
+        this.userRepository=Userrepo;
+    }
+
     public String SaveUser(User user){
 
         if(userRepository.findByByUsername(user.getUsername())==null){
